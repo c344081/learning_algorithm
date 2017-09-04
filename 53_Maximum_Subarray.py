@@ -11,7 +11,7 @@ class Solution(object):
         :rtype: int
         """
         curSum = maxSum = nums[0]
-        for n in nums[i:]:
+        for n in nums[1:]:
             curSum = max(n, n + curSum)
             maxSum = max(curSum, maxSum)
         return maxSum
