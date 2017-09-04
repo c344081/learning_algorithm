@@ -10,3 +10,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        curSum = maxSum = nums[0]
+        for n in nums[i:]:
+            curSum = max(n, n + curSum)
+            maxSum = max(curSum, maxSum)
+        return maxSum

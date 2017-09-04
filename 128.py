@@ -16,3 +16,28 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        if not nums: return 0
+        if len(nums) == 0: return 0
+
+        curLength = 1
+        maxLength = 1
+        records = {}
+        for i in range(len(nums)):
+            n = nums[i]
+            if n not in records:
+                records[n] = 1
+            else:
+                records[n] = records[n] + 1
+        pre = 0
+        for i, n in enumerate(sorted(records)):
+            if n == pre + 1 and i > 0:
+                curLength += 1
+            else:
+                curLength = 1
+            pre = n
+            maxLength = max(maxLength, curLength)
+        return maxLength
+
+nums = [100, 4, 200, 1, 3, 2]
+s = Solution()
+print(s.longestConsecutive(nums))
