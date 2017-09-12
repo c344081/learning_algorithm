@@ -32,6 +32,8 @@ Note:
 You may assume k is always valid, ie: k is always smaller than input array's size for non-empty array.
 '''
 
+import bisect
+
 class Solution(object):
     def medianSlidingWindow(self, nums, k):
         """
@@ -39,3 +41,16 @@ class Solution(object):
         :type k: int
         :rtype: List[float]
         """
+        if not nums:
+            return []
+        window = sorted(nums[:k])
+        results = []
+        for x, y in zip(nums, nums[k:] + [0]):
+            results.append((window[k/2] + window[~(k/2)) / 2.0])
+            window.remove(x)
+            bisect.insort(window, y)
+        return results
+
+
+
+

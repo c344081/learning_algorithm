@@ -41,11 +41,6 @@ class Solution(object):
         :rtype: void Do not return anything, modify root in-place instead.
         """
 
-        if root:
-            self.flatten(root.left)
-            self.flatten(root.right)
-            print(root.val)
-
 root = TreeNode(1)
 root.left = TreeNode(2)
 root.left.left = TreeNode(3)
