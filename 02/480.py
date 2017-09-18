@@ -46,7 +46,7 @@ class Solution(object):
         window = sorted(nums[:k])
         results = []
         for x, y in zip(nums, nums[k:] + [0]):
-            results.append((window[k/2] + window[~(k/2)) / 2.0])
+            results.append((window[k/2] + window[~(k/2)]) / 2.0)
             window.remove(x)
             bisect.insort(window, y)
         return results
