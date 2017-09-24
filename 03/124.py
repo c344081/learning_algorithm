@@ -22,9 +22,10 @@ class TreeNode(object):
         self.left = None
         self.right = None
 
+import sys
 class Solution(object):
     def __init__(self):
-        self.maxValue = (1 << 32) * -1 + 1
+        self.maxValue = -sys.maxsize
     def helper(self, root):
         if not root:
             return 0
