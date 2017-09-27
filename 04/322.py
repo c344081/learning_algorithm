@@ -18,6 +18,7 @@ You may assume that you have an infinite number of each kind of coin.
 """
 
 # 把Solution那篇文章的方法写了一遍...
+import time
 import sys
 class Solution(object):
     def coinChange(self, coins, amount):
@@ -56,23 +57,24 @@ class BruteForceSolution(object):
         return self.helper(0, coins, amount)
 
 class DpTopDownSolution(object):
-    # F(S) = min(F(S−ci)) + 1
+    # F(S) = F(S−C)+1
+
     def helper(self, coins, remain, counts):
         if remain < 0:
             return -1
         if remain == 0:
             return 0
-        if counts[remain - 1] != 0:
-            return counts[remain - 1]
+        if remain in counts:
+            return counts[remain]
         minCount = sys.maxsize
         for coin in coins:
             ret = self.helper(coins, remain - coin, counts)
             if ret < 0 or ret >= minCount:
                 continue
             minCount = ret + 1
-        counts[remain - 1] = -1 if minCount == sys.maxsize else minCount
-        return counts[remain - 1]
-
+        res = -1 if minCount == sys.maxsize else minCount
+        counts[remain] = res
+        return res
     def coinChange(self, coins, amount):
         """
         :type coins: List[int]
@@ -83,7 +85,8 @@ class DpTopDownSolution(object):
             return -1
         if amount < 1:
             return 0
-        return self.helper(coins, amount, [0] * amount)
+
+        return self.helper(coins, amount, {})
 
 
 class DpBottomUpSolution(object):
@@ -96,12 +99,15 @@ class DpBottomUpSolution(object):
         dp = [amount + 1] * (amount + 1)
         dp[0] = 0
         for i in range(1, amount + 1):
-            for j in range(len(coins)):
-                if coins[j] <= i:
-                    dp[i] = min(dp[i], dp[i - coins[j]] + 1)
+            for coin in coins:
+                if coin <= i:
+                    dp[i] = min(dp[i], dp[i - coin] + 1)
         return -1 if dp[amount] > amount else dp[amount]
 
 
 s = Solution()
-minCount = s.coinChange([3, 9, 400, 380], 8888)
-print(minCount)
+startt = time.time()
+minCount = s.coinChange([342,268,284,65,217,461,245,249,106], 9278)
+# minCount = s.coinChange([3, 4], 150)
+endt = time.time()
+print(minCount, endt - startt)
