@@ -19,6 +19,7 @@ Another example is LCA of nodes 5 and 4 is 5,
 since a node can be a descendant of itself according to the LCA definition.
 '''
 
+
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):
@@ -34,4 +35,3 @@ class Solution(object):
         :type q: TreeNode
         :rtype: TreeNode
         """
-        

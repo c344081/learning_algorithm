@@ -18,6 +18,7 @@ Output: 0
 In this case, no transaction is done, i.e. max profit = 0.
 """
 
+
 class Solution(object):
     def maxProfit(self, prices):
         """
@@ -32,6 +33,7 @@ class Solution(object):
             minPrice = min(minPrice, prices[i])
             maxProfit = max(maxProfit, prices[i] - minPrice)
         return maxProfit
+
 
 prices = [7, 1, 5, 3, 6, 4]
 s = Solution()

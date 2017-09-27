@@ -25,6 +25,6 @@ class Solution(object):
         return n2
 
 s = Solution()
-ways =  s.climbStairs(4)
+ways = s.climbStairs(4)
 
 print(ways)
