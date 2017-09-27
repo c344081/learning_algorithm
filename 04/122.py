@@ -17,6 +17,16 @@ class Solution(object):
         :type prices: List[int]
         :rtype: int
         """
+        if not prices:
+            return 0
+
+        profit = 0
+        for i in range(1, len(prices)):
+            val = prices[i] - prices[i - 1]
+            if val > 0:
+                profit += val
+        return profit
+
 
 prices = [7, 1, 5, 3, 6, 4, 8]
 s = Solution()

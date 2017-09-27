@@ -22,8 +22,9 @@ class Solution(object):
         :type triangle: List[List[int]]
         :rtype: int
         """
-        if not triangle: return 0
-        ret = triangle[-1]
+        if not triangle:
+            return 0
+        ret = triangle[-1][:]
         for i in range(len(triangle) - 2, -1, -1):
             for j in range(len(triangle[i])):
                 ret[j] = triangle[i][j] + min(ret[j], ret[j + 1])
